@@ -4,7 +4,6 @@ on: [push]
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     steps:
@@ -23,3 +22,23 @@ jobs:
           name: ato
           path: build/*
           retention-days: 1
+  
+  deploy-to-server:
+    name: deploy the ato website frontend to static server
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: ato
+
+      - name: Send files to server
+        uses: easingthemes/ssh-deploy@v2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.AWS_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "."
+          REMOTE_HOST: ${{ secrets.AWS_SERVER_HOST }}
+          REMOTE_USER: "ubuntu"
+          TARGET: "/home/ubuntu/ato/"
