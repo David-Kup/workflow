@@ -20,7 +20,8 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: ato
-          path: build/*
+          # path: build/*
+          path: /*
           retention-days: 1
   
   # deploy-to-server:
