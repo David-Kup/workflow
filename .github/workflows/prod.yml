@@ -50,7 +50,7 @@ jobs:
           privateKey: ${{ secrets.AWS_KEY }}
           debug: false
           command: |
-            cd /home/ubuntu/workflow
+            cd /home/workflow
             git pull
       #       sudo rm -rf /var/www/html/frontend
       #       sudo mv ato /var/www/html/frontend
