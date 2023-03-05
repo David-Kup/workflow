@@ -40,7 +40,7 @@ jobs:
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "."
           REMOTE_HOST: ${{ secrets.AWS_TEST_SERVER_HOST }}
-          REMOTE_USER: "root"
+          REMOTE_USER: "ubuntu"
           TARGET: "/home/hiruki"
       
       # - name: Execute SSH commands on remote server
