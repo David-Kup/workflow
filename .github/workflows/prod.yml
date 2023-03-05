@@ -16,42 +16,43 @@ jobs:
       - run: npm run build --if-present
       - run: npm test
 
-      # - name: Upload artifact
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: ato
-      #     path: build/*
-      #     retention-days: 1
+      - name: Upload artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: hiruki
+          path: build/*
+          retention-days: 1
   
   deploy-to-server:
     name: deploy the ato website frontend to static server
     needs: [build]
     runs-on: ubuntu-latest
     steps:
-      # - name: Download artifact
-      #   uses: actions/download-artifact@v2
-      #   with:
-      #     name: ato
-
-      # - name: Send files to server
-      #   uses: easingthemes/ssh-deploy@v2
-      #   env:
-      #     SSH_PRIVATE_KEY: ${{ secrets.AWS_KEY }}
-      #     ARGS: "-rltgoDzvO --delete"
-      #     SOURCE: "."
-      #     REMOTE_HOST: ${{ secrets.AWS_SERVER_HOST }}
-      #     REMOTE_USER: "ubuntu"
-      #     TARGET: "/home/ubuntu/ato/"
-      
-      - name: Execute SSH commands on remote server
-        uses: JimCronqvist/action-ssh@master
+      - name: Download artifact
+        uses: actions/download-artifact@v2
         with:
-          hosts: "ubuntu@${{ secrets.AWS_SERVER_HOST }}"
-          privateKey: ${{ secrets.AWS_KEY }}
-          debug: false
-          command: |
-            cd /home/workflow
-            git pull
+          name: hiruki
+
+      - name: Send files to server
+        uses: easingthemes/ssh-deploy@v2
+        env:
+          SSH_PRIVATE_KEY: ${{ secrets.HIRUKI_DIGITAL_KEY }}
+          ARGS: "-rltgoDzvO --delete"
+          SOURCE: "."
+          REMOTE_HOST: ${{ secrets.HIRUKI_SERVER_HOST }}
+          REMOTE_USER: "root"
+          TARGET: "/var/www/html"
+      
+      # - name: Execute SSH commands on remote server
+      #   uses: JimCronqvist/action-ssh@master
+      #   with:
+      #     hosts: "ubuntu@${{ secrets.HIRUKI_SERVER_HOST }}"
+      #     privateKey: ${{ secrets.HIRUKI_DIGITAL_KEY }}
+      #     debug: false
+      #     command: |
+      #       cd /home/workflow
+      #       git pull
+
       #       sudo rm -rf /var/www/html/frontend
       #       sudo mv ato /var/www/html/frontend
       #       sudo chmod -R 777 /var/www/html/frontend
