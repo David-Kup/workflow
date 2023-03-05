@@ -42,6 +42,7 @@ jobs:
           SOURCE: "."
           REMOTE_HOST: ${{ secrets.HIRUKI_SERVER_HOST }}
           REMOTE_USER: "root"
+          
           TARGET: "/home/hiruki"
       
       # - name: Execute SSH commands on remote server
