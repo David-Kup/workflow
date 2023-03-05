@@ -41,7 +41,7 @@ jobs:
           SOURCE: "."
           REMOTE_HOST: ${{ secrets.AWS_TEST_SERVER_HOST }}
           REMOTE_USER: "ubuntu"
-          TARGET: "/home/hiruki"
+          TARGET: "/home/ubuntu/hiruki"
       
       # - name: Execute SSH commands on remote server
       #   uses: JimCronqvist/action-ssh@master
