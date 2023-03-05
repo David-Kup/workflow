@@ -42,7 +42,7 @@ jobs:
           REMOTE_HOST: ${{ secrets.KJH_SERVER_HOST }}
           REMOTE_USER: "root"
 
-          TARGET: "/home/hiruki"
+          TARGET: "/var/www/html"
       
       # - name: Execute SSH commands on remote server
       #   uses: JimCronqvist/action-ssh@master
