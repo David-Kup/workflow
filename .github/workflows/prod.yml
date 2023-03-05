@@ -36,13 +36,12 @@ jobs:
       - name: Send files to server
         uses: easingthemes/ssh-deploy@v2
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.HIRUKI_DIGITAL_KEY }}
-          SSH_PASSPHRASE: ${{ secrets.HIRUKI_PASSPHRASE}}
+          SSH_PRIVATE_KEY: ${{ secrets.KJH_SERVER_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "."
-          REMOTE_HOST: ${{ secrets.HIRUKI_SERVER_HOST }}
+          REMOTE_HOST: ${{ secrets.KJH_SERVER_HOST }}
           REMOTE_USER: "root"
-          
+
           TARGET: "/home/hiruki"
       
       # - name: Execute SSH commands on remote server
