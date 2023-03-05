@@ -7,6 +7,7 @@ function App() {
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <h1>Hello KJH Hello!</h1>
+        <h2>{process.env.REACT_APP_ENV_FILE_NAME}</h2>
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
