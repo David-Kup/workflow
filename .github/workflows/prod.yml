@@ -36,12 +36,12 @@ jobs:
       - name: Send files to server
         uses: easingthemes/ssh-deploy@v2
         env:
-          SSH_PRIVATE_KEY: ${{ secrets.AWS_TEST_KEY }}
+          SSH_PRIVATE_KEY: ${{ secrets.AWS_KEY }}
           ARGS: "-rltgoDzvO --delete"
           SOURCE: "."
-          REMOTE_HOST: ${{ secrets.AWS_TEST_SERVER_HOST }}
-          REMOTE_USER: "ubuntu"
-          TARGET: "/home/ubuntu/hiruki"
+          REMOTE_HOST: ${{ secrets.AWS_SERVER_HOST }}
+          REMOTE_USER: "root"
+          TARGET: "/home/hiruki"
       
       # - name: Execute SSH commands on remote server
       #   uses: JimCronqvist/action-ssh@master
